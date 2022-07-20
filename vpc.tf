@@ -17,7 +17,7 @@ resource "aws_subnet" "pub_subnet" {
     vpc_id = "${aws_vpc.vpc22.id}"
 
     availability_zone = var.az
-    cidr_block        = cidrsubnet(aws_vpc.vpc22.cidr_block, 1, 1)
+    cidr_block        = cidrsubnet(aws_vpc.vpc22.cidr_block, 1, 2)
     ipv6_cidr_block   = cidrsubnet(aws_vpc.vpc22.ipv6_cidr_block, 8, 2)
  
     map_public_ip_on_launch = "true" //it makes this a public subnet
@@ -33,7 +33,7 @@ resource "aws_subnet" "priv_subnet" {
     vpc_id = "${aws_vpc.vpc22.id}"
 
     availability_zone = var.az
-    cidr_block        = cidrsubnet(aws_vpc.vpc22.cidr_block, 2, 3)
+    cidr_block        = cidrsubnet(aws_vpc.vpc22.cidr_block, 1, 3)
     ipv6_cidr_block   = cidrsubnet(aws_vpc.vpc22.ipv6_cidr_block, 8, 4)
 
     map_public_ip_on_launch = "true" //it makes this a private subnet
@@ -85,7 +85,7 @@ resource "aws_route_table_association" "rta_pub_subnet"{
 
 resource "aws_network_interface" "nic" {
   subnet_id       = aws_subnet.pub_subnet.id
-  private_ips     = ["10.60.0.50"]
+  private_ips     = ["10.60.1.11"]
   security_groups = [aws_security_group.secgroup_web.id]
 }
 
