@@ -17,8 +17,8 @@ resource "aws_subnet" "pub_subnet" {
     vpc_id = "${aws_vpc.vpc22.id}"
 
     availability_zone = var.az
-    cidr_block        = cidrsubnet(aws_vpc.vpc22.cidr_block, 0, 1)
-    ipv6_cidr_block   = cidrsubnet(aws_vpc.vpc22.ipv6_cidr_block, 0, 2)
+    cidr_block        = cidrsubnet(aws_vpc.vpc22.cidr_block, 1, 1)
+    ipv6_cidr_block   = cidrsubnet(aws_vpc.vpc22.ipv6_cidr_block, 1, 2)
  
     map_public_ip_on_launch = "true" //it makes this a public subnet
     assign_ipv6_address_on_creation = true
@@ -33,8 +33,8 @@ resource "aws_subnet" "priv_subnet" {
     vpc_id = "${aws_vpc.vpc22.id}"
 
     availability_zone = var.az
-    cidr_block        = cidrsubnet(aws_vpc.vpc22.cidr_block, 0, 3)
-    ipv6_cidr_block   = cidrsubnet(aws_vpc.vpc22.ipv6_cidr_block, 0, 4)
+    cidr_block        = cidrsubnet(aws_vpc.vpc22.cidr_block, 2, 3)
+    ipv6_cidr_block   = cidrsubnet(aws_vpc.vpc22.ipv6_cidr_block, 2, 4)
 
     map_public_ip_on_launch = "true" //it makes this a private subnet
     assign_ipv6_address_on_creation = false
