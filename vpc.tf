@@ -18,13 +18,13 @@ resource "aws_subnet" "pub_subnet" {
 
     availability_zone = var.az
     cidr_block        = cidrsubnet(aws_vpc.vpc22.cidr_block, 1, 1)
-    ipv6_cidr_block   = cidrsubnet(aws_vpc.vpc22.ipv6_cidr_block, 1, 2)
+    ipv6_cidr_block   = cidrsubnet(aws_vpc.vpc22.ipv6_cidr_block, 8, 2)
  
     map_public_ip_on_launch = "true" //it makes this a public subnet
     assign_ipv6_address_on_creation = true
 
     tags = {
-        Name = "pub-subnet"
+        Name = "pub_subnet"
         owner = "violetta"
     }
 }
@@ -34,7 +34,7 @@ resource "aws_subnet" "priv_subnet" {
 
     availability_zone = var.az
     cidr_block        = cidrsubnet(aws_vpc.vpc22.cidr_block, 2, 3)
-    ipv6_cidr_block   = cidrsubnet(aws_vpc.vpc22.ipv6_cidr_block, 2, 4)
+    ipv6_cidr_block   = cidrsubnet(aws_vpc.vpc22.ipv6_cidr_block, 8, 4)
 
     map_public_ip_on_launch = "true" //it makes this a private subnet
     assign_ipv6_address_on_creation = false
@@ -81,6 +81,12 @@ resource "aws_route_table" "public_route" {
 resource "aws_route_table_association" "rta_pub_subnet"{
     subnet_id = aws_subnet.pub_subnet.id
     route_table_id = "${aws_route_table.public_route.id}"
+}
+
+resource "aws_network_interface" "nic" {
+  subnet_id       = aws_subnet.pub_subnet.id
+  private_ips     = ["10.60.0.50"]
+  security_groups = [aws_security_group.secgroup_web.id]
 }
 
 resource "aws_security_group" "secgroup_web" {
