@@ -8,7 +8,7 @@ resource "aws_vpc" "vpc" {
   instance_tenancy = "default"
 
   tags = {
-    Name = "vpc"
+    Name = "vpc22"
     owner = "violetta"
   }
 }
