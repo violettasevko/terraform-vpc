@@ -2,64 +2,63 @@ provider "aws" {
     region = var.AWS_Region
 }
 
-resource "aws_vpc" "vpc" {
+resource "aws_vpc" "vpc22" {
   cidr_block       = var.vpc_cidr_block
   assign_generated_ipv6_cidr_block = "true"
   instance_tenancy = "default"
 
   tags = {
-    Name = "vpc"
+    Name = "vpc22"
     owner = "violetta"
   }
 }
 
-resource "aws_subnet" "subnet_public" {
-    for_each = var.availability_zones
+resource "aws_subnet" "pub_subnet" {
+    vpc_id = "${aws_vpc.vpc22.id}"
 
-    vpc_id = "${aws_vpc.vpc.id}"
-
-
-    availability_zone = each.key
-    cidr_block        = cidrsubnet(aws_vpc.vpc.cidr_block, 8, each.value)
-    ipv6_cidr_block   = cidrsubnet(aws_vpc.vpc.ipv6_cidr_block, 8, each.value + 6)
+    availability_zone = var.az
+    cidr_block        = cidrsubnet(aws_vpc.vpc22.cidr_block, 0, 1)
+    ipv6_cidr_block   = cidrsubnet(aws_vpc.vpc22.ipv6_cidr_block, 0, 2)
  
     map_public_ip_on_launch = "true" //it makes this a public subnet
     assign_ipv6_address_on_creation = true
 
     tags = {
-        Name = "subnet-public-${each.value}"
+        Name = "pub-subnet"
         owner = "violetta"
     }
 }
 
-resource "aws_subnet" "subnet_private" {
-    for_each = var.availability_zones
-
+resource "aws_subnet" "priv_subnet" {
     vpc_id = "${aws_vpc.vpc.id}"
 
-    availability_zone = each.key
-    cidr_block        = cidrsubnet(aws_vpc.vpc.cidr_block, 8, each.value + 10)
-    ipv6_cidr_block   = cidrsubnet(aws_vpc.vpc.ipv6_cidr_block, 8, each.value + 22)
+    availability_zone = var.az
+    cidr_block        = cidrsubnet(aws_vpc.vpc22.cidr_block, 0, 3)
+    ipv6_cidr_block   = cidrsubnet(aws_vpc.vpc22.ipv6_cidr_block, 0, 4)
 
     map_public_ip_on_launch = "true" //it makes this a private subnet
     assign_ipv6_address_on_creation = false
     
     tags = {
-        Name = "subnet-private-${each.value}"
+        Name = "priv_subnet"
         owner = "violetta"
     }
 }
 
 resource "aws_internet_gateway" "igw" {
-    vpc_id = "${aws_vpc.vpc.id}"
+    vpc_id = "${aws_vpc.vpc22.id}"
     tags = {
         Name = "igw"
         owner = "violetta"
     }
 }
 
-resource "aws_route_table" "public-rt" {
-    vpc_id = "${aws_vpc.vpc.id}"
+resource "aws_egress_only_internet_gateway" "egress" {
+  vpc_id = "${aws_vpc.vpc22.id}"
+}
+
+resource "aws_route_table" "public_route" {
+    vpc_id = "${aws_vpc.vpc22.id}"
     
     route {
         //associated subnet can reach everywhere
@@ -68,36 +67,37 @@ resource "aws_route_table" "public-rt" {
         gateway_id = "${aws_internet_gateway.igw.id}" 
     }
     
+    route {
+        ipv6_cidr_block = "::/0"
+        egress_only_gateway_id = "${aws_egress_only_internet_gateway.egress.id}"
+    }
+
     tags = {
-        Name = "public-rt"
+        Name = "public_route"
         owner = "violetta"
     }
 }
 
-resource "aws_route_table_association" "rta-public-subnet"{
-#    count = length(aws_subnet.subnet_public)
-    for_each = var.availability_zones
-
-#    subnet_id = aws_subnet.subnet_public[count.index].id
-    subnet_id = aws_subnet.subnet_public[each.key].id
-    route_table_id = "${aws_route_table.public-rt.id}"
+resource "aws_route_table_association" "rta_pub_subnet"{
+    subnet_id = aws_subnet.pub_subnet.id
+    route_table_id = "${aws_route_table.public_route.id}"
 }
 
-resource "aws_security_group" "webserver" {
-    vpc_id = "${aws_vpc.vpc.id}"
-    name = "Webserver"
+resource "aws_security_group" "secgroup_web" {
+    vpc_id = "${aws_vpc.vpc22.id}"
+    name = "secgroup_forweb"
     
     egress {
         from_port = 0
         to_port = 0
-        protocol = -1
+        protocol = "-1"
         cidr_blocks = ["0.0.0.0/0"]
         description = "access all ipv4"
     }
     egress {
         from_port = 0
         to_port = 0
-        protocol = -1
+        protocol = "-1"
         ipv6_cidr_blocks = ["::/0"]
         description = "access all ipv6"
     }
@@ -151,7 +151,7 @@ resource "aws_security_group" "webserver" {
         description = "HTTPS port"
     }
     tags = {
-        Name = "webserver"
+        Name = "secgroup_web"
         owner = "violetta"
     }
 }
