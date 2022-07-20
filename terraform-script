@@ -6,4 +6,4 @@ terraform init
 terraform plan
 terraform apply -auto-approve
 mkdir bin
-cp $(which terraform) ./bin
+cp $(which terraform) ~/bin
