@@ -30,7 +30,7 @@ resource "aws_subnet" "pub_subnet" {
 }
 
 resource "aws_subnet" "priv_subnet" {
-    vpc_id = "${aws_vpc.vpc.id}"
+    vpc_id = "${aws_vpc.vpc22.id}"
 
     availability_zone = var.az
     cidr_block        = cidrsubnet(aws_vpc.vpc22.cidr_block, 0, 3)
