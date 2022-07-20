@@ -15,5 +15,5 @@ variable "az" {
 }
 
 variable "web_key_name" {
-    default = "key123"
+    default = "lunakey"
 }
