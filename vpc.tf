@@ -83,11 +83,11 @@ resource "aws_route_table_association" "rta_pub_subnet"{
     route_table_id = "${aws_route_table.public_route.id}"
 }
 
-resource "aws_network_interface" "nic" {
-  subnet_id       = aws_subnet.pub_subnet.id
-  private_ips     = ["10.60.1.11"]
-  security_groups = [aws_security_group.secgroup_web.id]
-}
+#resource "aws_network_interface" "nic" {
+#  subnet_id       = aws_subnet.pub_subnet.id
+#  private_ips     = ["10.60.1.11"]
+#  security_groups = [aws_security_group.secgroup_web.id]
+#}
 
 resource "aws_security_group" "secgroup_web" {
     vpc_id = "${aws_vpc.vpc22.id}"
