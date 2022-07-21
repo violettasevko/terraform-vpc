@@ -2,23 +2,23 @@ provider "aws" {
     region = var.AWS_Region
 }
 
-resource "aws_vpc" "vpc22" {
+resource "aws_vpc" "myvpc22" {
   cidr_block       = var.vpc_cidr_block
   assign_generated_ipv6_cidr_block = "true"
   instance_tenancy = "default"
 
   tags = {
-    Name = "vpc22"
+    Name = "myvpc22"
     owner = "violetta"
   }
 }
 
 resource "aws_subnet" "pub_subnet" {
-    vpc_id = "${aws_vpc.vpc22.id}"
+    vpc_id = "${aws_vpc.myvpc22.id}"
 
     availability_zone = var.az
-    cidr_block        = cidrsubnet(aws_vpc.vpc22.cidr_block, 8, each.value)
-    ipv6_cidr_block   = cidrsubnet(aws_vpc.vpc22.ipv6_cidr_block, 8, each.value + 6)
+    cidr_block        = cidrsubnet(aws_vpc.myvpc22.cidr_block, 8, each.value)
+    ipv6_cidr_block   = cidrsubnet(aws_vpc.myvpc22.ipv6_cidr_block, 8, each.value + 6)
  
     map_public_ip_on_launch = "true" //it makes this a public subnet
     assign_ipv6_address_on_creation = true
@@ -30,11 +30,11 @@ resource "aws_subnet" "pub_subnet" {
 }
 
 resource "aws_subnet" "priv_subnet" {
-    vpc_id = "${aws_vpc.vpc22.id}"
+    vpc_id = "${aws_vpc.myvpc22.id}"
 
     availability_zone = var.az
-    cidr_block        = cidrsubnet(aws_vpc.vpc22.cidr_block, 8, each.value + 6)
-    ipv6_cidr_block        = cidrsubnet(aws_vpc.vpc22.ipv6_cidr_block, 8, each.value + 22)
+    cidr_block        = cidrsubnet(aws_vpc.myvpc22.cidr_block, 8, each.value + 6)
+    ipv6_cidr_block        = cidrsubnet(aws_vpc.myvpc22.ipv6_cidr_block, 8, each.value + 22)
 
     map_public_ip_on_launch = "true" //it makes this a private subnet
     assign_ipv6_address_on_creation = false
@@ -46,7 +46,7 @@ resource "aws_subnet" "priv_subnet" {
 }
 
 resource "aws_internet_gateway" "igw" {
-    vpc_id = "${aws_vpc.vpc22.id}"
+    vpc_id = "${aws_vpc.myvpc22.id}"
     tags = {
         Name = "igw"
         owner = "violetta"
@@ -54,11 +54,11 @@ resource "aws_internet_gateway" "igw" {
 }
 
 resource "aws_egress_only_internet_gateway" "egress" {
-  vpc_id = "${aws_vpc.vpc22.id}"
+  vpc_id = "${aws_vpc.myvpc22.id}"
 }
 
 resource "aws_route_table" "public_route" {
-    vpc_id = "${aws_vpc.vpc22.id}"
+    vpc_id = "${aws_vpc.myvpc22.id}"
     
     route {
         //associated subnet can reach everywhere
@@ -90,7 +90,7 @@ resource "aws_route_table_association" "rta_pub_subnet"{
 #}
 
 resource "aws_security_group" "secgroup_web" {
-    vpc_id = "${aws_vpc.vpc22.id}"
+    vpc_id = "${aws_vpc.myvpc22.id}"
     name = "secgroup_forweb"
     
     egress {
