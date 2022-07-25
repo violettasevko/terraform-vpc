@@ -7,5 +7,5 @@ variable "vpc_cidr_block" {
 }
 
 variable "az" {
-    default = "eu-central-1a"
+    default = "us-east-2a"
 }
