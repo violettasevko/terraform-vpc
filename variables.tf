@@ -3,7 +3,7 @@ variable "AWS_Region" {
 }
 
 variable "vpc_cidr_block" {
-    default = "10.61.0.0/16"
+    default = "10.60.0.0/16"
 }
 
 variable "az" {
