@@ -4,12 +4,14 @@
 #}
 
 variable "AWS_Region" {
-  type    = list(string)
+  description = "type a region (default - eu-central-1)"
+  type    = string
   default = ["eu-central-1"]
 }
 
 variable "vpc_prefix" {
-  type    = list(string)
+  description = "type a cidr (default - 10.60)"
+  type    = string
   default = ["10.60"]
 }
 
