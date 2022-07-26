@@ -1,4 +1,4 @@
-local {
+locals {
   AWS_Region = "eu-central-1"
   vpc_prefix = "10.60"
 }
