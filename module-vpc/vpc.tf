@@ -4,9 +4,9 @@
 #}
 
 variable "AWS_Region" {
-  description = "type a region (default - eu-central-1)"
+  description = "type a region (default - us-east-1)"
   type    = string
-  default = "eu-central-1"
+  default = "us-east-1"
 }
 
 variable "vpc_prefix" {
@@ -14,6 +14,9 @@ variable "vpc_prefix" {
   type    = string
   default = "10.60"
 }
+#terraform apply -var="AWS_Region=eu-central-1" -var="vpc_prefix=10.61"
+#terraform apply -var="AWS_Region=us-east-2" -var="vpc_prefix=10.62"
+#terraform apply -var="AWS_Region=eu-west-3" -var="vpc_prefix=10.63"
 
 provider "aws" {
     region = var.AWS_Region
