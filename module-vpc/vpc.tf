@@ -14,8 +14,8 @@ module "vpc" {
   cidr = "${local.vpc_prefix}.0.0/16"
 
   azs             = ["${local.AWS_Region}a", "${local.AWS_Region}b", "${local.AWS_Region}c"]
-   public_subnets  = ["${local.vpc_prefix}.11.0/16", "${local.vpc_prefix}.12.0/16", "${local.vpc_prefix}.13.0/16"]
-   #private_subnets = ["${local.vpc_prefix}.21.0/16", "${local.vpc_prefix}.22.0/16", "${local.vpc_prefix}.23.0/16"]
+   public_subnets  = ["${local.vpc_prefix}.11.0/24", "${local.vpc_prefix}.12.0/24", "${local.vpc_prefix}.13.0/24"]
+   #private_subnets = ["${local.vpc_prefix}.21.0/24", "${local.vpc_prefix}.22.0/24", "${local.vpc_prefix}.23.0/24"]
   
   enable_nat_gateway = false
 
