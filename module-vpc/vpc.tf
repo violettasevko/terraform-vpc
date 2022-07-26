@@ -1,21 +1,31 @@
-locals {
-  AWS_Region = "eu-central-1"
-  vpc_prefix = "10.60"
+#locals {
+#  AWS_Region = "eu-central-1"
+#  vpc_prefix = "10.60"
+#}
+
+variable "AWS_Region" {
+  type    = list(string)
+  default = ["eu-central-1"]
+}
+
+variable "vpc_prefix" {
+  type    = list(string)
+  default = ["10.60"]
 }
 
 provider "aws" {
-    region = local.AWS_Region
+    region = var.AWS_Region
 }
 
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
   name = "shared-vpc"
-  cidr = "${local.vpc_prefix}.0.0/16"
+  cidr = "${var.vpc_prefix}.0.0/16"
 
-  azs             = ["${local.AWS_Region}a", "${local.AWS_Region}b", "${local.AWS_Region}c"]
-   public_subnets  = ["${local.vpc_prefix}.11.0/24", "${local.vpc_prefix}.12.0/24", "${local.vpc_prefix}.13.0/24"]
-   #private_subnets = ["${local.vpc_prefix}.21.0/24", "${local.vpc_prefix}.22.0/24", "${local.vpc_prefix}.23.0/24"]
+  azs             = ["${var.AWS_Region}a", "${var.AWS_Region}b", "${var.AWS_Region}c"]
+   public_subnets  = ["${var.vpc_prefix}.11.0/24", "${var.vpc_prefix}.12.0/24", "${var.vpc_prefix}.13.0/24"]
+   #private_subnets = ["${var.vpc_prefix}.21.0/24", "${var.vpc_prefix}.22.0/24", "${var.vpc_prefix}.23.0/24"]
   
   enable_nat_gateway = false
 
