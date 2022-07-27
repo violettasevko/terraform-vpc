@@ -6,7 +6,7 @@ module "ec2_instance" {
 
   ami                    = "ami-0ceb85bb30095410b"
   instance_type          = "t4g.micro"
-  key_name               = "mykey"
+  #key_name               = "mykey"
   vpc_security_group_ids = ["sg-01a2fa9f3edfed686"]
   subnet_id              = "subnet-0b71a64ba91b38019"
 
