@@ -11,7 +11,7 @@ variable "AWS_Region" {
 variable "instance_type" {
   description = "instance type for ec2"
   type = string
-  default = "t2.micro"
+  default = "t4g.micro"
 }
 
 variable "key_name" {
@@ -20,7 +20,7 @@ variable "key_name" {
 }
 
 resource "aws_instance" "testinstance" {
-  ami           = "ami-0b9064170e32bde34"
+  ami           = "ami-0ceb85bb30095410b"
   key_name = var.key_name
   instance_type = var.instance_type
   security_groups= [ "Webstd"]
