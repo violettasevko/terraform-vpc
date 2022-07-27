@@ -2,17 +2,15 @@ module "ec2_instance" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "~> 3.0"
 
-  name = "single-instance"
+  name = "testinstance"
 
-  ami                    = "ami-ebd02392"
-  instance_type          = "t2.micro"
-  key_name               = "user1"
-  monitoring             = true
-  vpc_security_group_ids = ["sg-12345678"]
-  subnet_id              = "subnet-eddcdzz4"
+  ami                    = "ami-0ceb85bb30095410b"
+  instance_type          = "t4g.micro"
+  key_name               = "mykey"
+  vpc_security_group_ids = ["Webstd"]
+  subnet_id              = "shared-vpc-public-eu-central-1a"
 
   tags = {
-    Terraform   = "true"
-    Environment = "dev"
+    owner   = "violetta"
   }
 }
