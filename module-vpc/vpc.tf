@@ -37,6 +37,7 @@ module "vpc" {
 
   enable_ipv6 = true
   assign_ipv6_address_on_creation = true
+  private_subnet_assign_ipv6_address_on_creation = true
 
   public_subnet_ipv6_prefixes = [11, 12, 13]
 
