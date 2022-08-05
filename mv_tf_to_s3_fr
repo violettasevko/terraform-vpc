@@ -1,0 +1,2 @@
+#!/bin/bash/
+#aws s3 cp terraform.tfstate s3://devops-hoi/terraform-states/frankfurt/terraform.tfstate
