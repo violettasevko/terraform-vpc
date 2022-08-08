@@ -25,14 +25,14 @@ provider "aws" {
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
-  name = "shared-vpc"
+  name = "Shared-vpc"
   cidr = "${var.vpc_prefix}.0.0/16"
 
   azs             = ["${var.AWS_Region}a", "${var.AWS_Region}b", "${var.AWS_Region}c"]
    public_subnets  = ["${var.vpc_prefix}.11.0/24", "${var.vpc_prefix}.12.0/24", "${var.vpc_prefix}.13.0/24"]
    private_subnets = ["${var.vpc_prefix}.21.0/24", "${var.vpc_prefix}.22.0/24", "${var.vpc_prefix}.23.0/24"]
   
-  #enable_nat_gateway = false
+  enable_nat_gateway = true
   single_nat_gateway = true
 
   enable_ipv6 = true
