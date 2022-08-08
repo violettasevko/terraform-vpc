@@ -46,18 +46,18 @@ module "vpc" {
 
   private_subnet_tags = {
      type = "map"
-    subnet[0] = { "Name" = "Private subnet A"}
-  subnet[1] = { "Name" = "Private subnet B"}
-  subnet[2] = { "Name" = "Private subnet C"}
+    subnet[0] = { Name = "Private subnet A"}
+  subnet[1] = { Name = "Private subnet B"}
+  subnet[2] = { Name = "Private subnet C"}
   }
 
 public_subnet_tags = {
   type = "map"
 
-  subnet[0] = { "Name" = "Public subnet A"}
-    subnet[1] = { "Name" = "Public subnet B"
+  subnet[0] = { Name = "Public subnet A"}
+    subnet[1] = { Name = "Public subnet B"
     }
-    subnet[2] = { "Name" = "Public subnet C"
+    subnet[2] = { Name = "Public subnet C"
 }
 }
 
