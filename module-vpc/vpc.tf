@@ -46,14 +46,14 @@ module "vpc" {
 
 public_subnet_tags = {
   Name = "Public subnet A"
-  Name = "Public subnet B"
-  Name = "Public subnet C"
+  Name2 = "Public subnet B"
+  Name3 = "Public subnet C"
 }
 
 private_subnet_tags = {
   Name = "Private subnet A"
-  Name = "Private subnet B"
-  Name = "Private subnet C"
+  Name2 = "Private subnet B"
+  Name3 = "Private subnet C"
 }
 
   tags = {
