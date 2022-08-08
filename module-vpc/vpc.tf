@@ -44,15 +44,6 @@ module "vpc" {
   public_subnet_ipv6_prefixes = [11, 12, 13]
   private_subnet_ipv6_prefixes = [21, 22, 23]
 
-public_subnet_tags = {
-  type = "map"
-  Name = {
-    "${var.AWS_Region}a" = "Public subnet A"
-    "${var.AWS_Region}b" = "Public subnet B"
-    "${var.AWS_Region}c" = "Public subnet C"
-  }
-}
-
 private_subnet_tags = {
   type = "map"
   Name = {
@@ -64,5 +55,14 @@ private_subnet_tags = {
 
   tags = {
     owner = "violetta"
+  }
+}
+
+variable "public_subnet_tags" {
+  type = "map"
+  Name = {
+    "${var.AWS_Region}a" = "Public subnet A"
+    "${var.AWS_Region}b" = "Public subnet B"
+    "${var.AWS_Region}c" = "Public subnet C"
   }
 }
