@@ -25,7 +25,7 @@ provider "aws" {
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
-  name = "Shared-vpc"
+  name = "shared-vpc"
   cidr = "${var.vpc_prefix}.0.0/16"
 
   azs             = ["${var.AWS_Region}a", "${var.AWS_Region}b", "${var.AWS_Region}c"]
