@@ -45,7 +45,7 @@ module "vpc" {
   private_subnet_ipv6_prefixes = [21, 22, 23]
 
 private_subnet_tags = {
-  type = "map"
+  type = map(string)
   Name = {
   "${var.AWS_Region}a" = "Private subnet A"
   "${var.AWS_Region}b" = "Private subnet B"
