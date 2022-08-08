@@ -32,13 +32,14 @@ module "vpc" {
    public_subnets  = ["${var.vpc_prefix}.11.0/24", "${var.vpc_prefix}.12.0/24", "${var.vpc_prefix}.13.0/24"]
    private_subnets = ["${var.vpc_prefix}.21.0/24", "${var.vpc_prefix}.22.0/24", "${var.vpc_prefix}.23.0/24"]
   
-  enable_nat_gateway = false
-  #single_nat_gateway = true
+  #enable_nat_gateway = false
+  single_nat_gateway = true
 
   enable_ipv6 = true
   #assign_ipv6_address_on_creation = true
 
   public_subnet_ipv6_prefixes = [11, 12, 13]
+  private_subnet_ipv6_prefixes = [21, 22, 23]
 
   tags = {
     owner = "violetta"
