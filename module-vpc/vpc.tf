@@ -45,11 +45,11 @@ module "vpc" {
   private_subnet_ipv6_prefixes = [21, 22, 23]
 
 public_subnet_tags = {
-  name = ["Public subnet A","Public subnet B", "Public subnet C"]
+  name = "Public subnet A","Public subnet B", "Public subnet C"
 }
 
 private_subnet_tags = {
-  name = ["Private subnet-A","Private subnet B", "Private subnet C"]
+  name = "Private subnet-A","Private subnet B", "Private subnet C"
 }
 
   tags = {
