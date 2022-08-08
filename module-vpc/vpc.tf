@@ -46,16 +46,20 @@ module "vpc" {
 
 public_subnet_tags = {
   type = "map"
-  "Name" = "Public subnet A"
-  "Name" = "Public subnet B"
-  "Name" = "Public subnet C"
+  Name = {
+    "${var.AWS_Region}a" = "Public subnet A"
+    "${var.AWS_Region}b" = "Public subnet B"
+    "${var.AWS_Region}c" = "Public subnet C"
+  }
 }
 
 private_subnet_tags = {
   type = "map"
-  "Name" = "Private subnet A"
-  "Name" = "Private subnet B"
-  "Name" = "Private subnet C"
+  Name = {
+  "${var.AWS_Region}a" = "Private subnet A"
+  "${var.AWS_Region}b" = "Private subnet B"
+  "${var.AWS_Region}c" = "Private subnet C"
+  }
 }
 
   tags = {
