@@ -34,12 +34,23 @@ module "vpc" {
   
   enable_nat_gateway = true
   single_nat_gateway = true
+  one_nat_gateway_per_az = false
+  
+  default_route_table_name = "igw"
 
   enable_ipv6 = true
   #assign_ipv6_address_on_creation = true
 
   public_subnet_ipv6_prefixes = [11, 12, 13]
   private_subnet_ipv6_prefixes = [21, 22, 23]
+
+public_subnet_tags {
+  name = ["Public subnet A","Public subnet B", "Public subnet C"]
+}
+
+private_subnet_tags {
+  name = ["Private subnet-A","Private subnet B", "Private subnet C"]
+}
 
   tags = {
     owner = "violetta"
