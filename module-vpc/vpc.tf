@@ -44,6 +44,18 @@ module "vpc" {
   public_subnet_ipv6_prefixes = [11, 12, 13]
   private_subnet_ipv6_prefixes = [21, 22, 23]
 
+public_subnet_tags = {
+  Name = "Public subnet A"
+  Name = "Public subnet B"
+  Name = "Public subnet C"
+}
+
+private_subnet_tags = {
+  Name = "Private subnet A"
+  Name = "Private subnet B"
+  Name = "Private subnet C"
+}
+
   tags = {
     owner = "violetta"
   }
