@@ -25,7 +25,7 @@ provider "aws" {
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
-  name = "shared-vpc"
+  name = "Shared-vpc"
   cidr = "${var.vpc_prefix}.0.0/16"
 
   azs             = ["${var.AWS_Region}a", "${var.AWS_Region}b", "${var.AWS_Region}c"]
@@ -39,7 +39,7 @@ module "vpc" {
   default_route_table_name = "igw"
 
   enable_ipv6 = true
-  #assign_ipv6_address_on_creation = true
+  assign_ipv6_address_on_creation = true
 
   public_subnet_ipv6_prefixes = [11, 12, 13]
   private_subnet_ipv6_prefixes = [21, 22, 23]
