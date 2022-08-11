@@ -2,3 +2,4 @@
 aws s3 cp terraform.tfstate s3://devops-hoi/terraform-states/ohio/terraform.tfstate
 #aws s3 cp terraform.tfstate s3://devops-hoi/terraform-states/frankfurt/terraform.tfstate
 #aws s3 cp terraform.tfstate s3://devops-hoi/terraform-states/virginia/terraform.tfstate
+#aws s3 cp "s3://devops-hoi/terraform-states/frankfurt/terraform.tfstate" "./terraform.tfstate"
