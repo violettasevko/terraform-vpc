@@ -28,8 +28,6 @@ module "vpc" {
    intra_subnets = ["${var.vpc_prefix}.31.0/24", "${var.vpc_prefix}.32.0/24", "${var.vpc_prefix}.33.0/24"]
   
   enable_nat_gateway = false
-  
-  default_route_table_name = "igw7"
 
   enable_ipv6 = true
   assign_ipv6_address_on_creation = true
@@ -38,15 +36,15 @@ module "vpc" {
   intra_subnet_ipv6_prefixes = [51, 52, 53]
 
 private_subnet_tags = {
-  Name = "Vpc4 private subnet A"
-  Name = "Vpc4 private subnet B"
-  Name = "Vpc4 private subnet C"
+  Name = "Vpc7 private subnet A"
+  Name = "Vpc7 private subnet B"
+  Name = "Vpc7 private subnet C"
 }
 
 intra_subnet_tags = {
-  Name = "Vpc4 intra subnet A"
-  Name = "Vpc4 intra subnet B"
-  Name = "Vpc4 intra subnet C"
+  Name = "Vpc7 intra subnet A"
+  Name = "Vpc7 intra subnet B"
+  Name = "Vpc7 intra subnet C"
 }
 
   tags = {

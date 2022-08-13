@@ -28,8 +28,6 @@ module "vpc" {
   
   enable_nat_gateway = false
   
-  default_route_table_name = "igw1"
-
   enable_ipv6 = true
   assign_ipv6_address_on_creation = true
 

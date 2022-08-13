@@ -27,8 +27,6 @@ module "vpc" {
    private_subnets = ["${var.vpc_prefix}.21.0/24", "${var.vpc_prefix}.22.0/24", "${var.vpc_prefix}.23.0/24"]
    
   enable_nat_gateway = false
-  
-  default_route_table_name = "igw8"
 
   enable_ipv6 = true
   assign_ipv6_address_on_creation = true
@@ -36,9 +34,9 @@ module "vpc" {
   private_subnet_ipv6_prefixes = [33, 34, 35]
 
 private_subnet_tags = {
-  Name = "Vpc4 private subnet A"
-  Name = "Vpc4 private subnet B"
-  Name = "Vpc4 private subnet C"
+  Name = "Vpc8 private subnet A"
+  Name = "Vpc8 private subnet B"
+  Name = "Vpc8 private subnet C"
 }
 
   tags = {

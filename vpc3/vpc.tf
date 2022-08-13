@@ -28,8 +28,6 @@ module "vpc" {
    intra_subnets = ["${var.vpc_prefix}.31.0/24", "${var.vpc_prefix}.32.0/24", "${var.vpc_prefix}.33.0/24"]
   
   enable_nat_gateway = false
-  
-  default_route_table_name = "igw3"
 
   enable_ipv6 = true
   assign_ipv6_address_on_creation = true

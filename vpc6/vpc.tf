@@ -30,8 +30,6 @@ module "vpc" {
   enable_nat_gateway = true
   single_nat_gateway = true
   one_nat_gateway_per_az = false
-  
-  default_route_table_name = "igw6"
 
   enable_ipv6 = true
   assign_ipv6_address_on_creation = true
@@ -40,15 +38,15 @@ module "vpc" {
   intra_subnet_ipv6_prefixes = [51, 52, 53]
 
 private_subnet_tags = {
-  Name = "Vpc4 private subnet A"
-  Name = "Vpc4 private subnet B"
-  Name = "Vpc4 private subnet C"
+  Name = "Vpc6 private subnet A"
+  Name = "Vpc6 private subnet B"
+  Name = "Vpc6 private subnet C"
 }
 
 intra_subnet_tags = {
-  Name = "Vpc4 intra subnet A"
-  Name = "Vpc4 intra subnet B"
-  Name = "Vpc4 intra subnet C"
+  Name = "Vpc6 intra subnet A"
+  Name = "Vpc6 intra subnet B"
+  Name = "Vpc6 intra subnet C"
 }
 
   tags = {

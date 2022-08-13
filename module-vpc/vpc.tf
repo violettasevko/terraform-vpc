@@ -36,8 +36,6 @@ module "vpc" {
   #single_nat_gateway = true
   #one_nat_gateway_per_az = false
   
-  default_route_table_name = "igw"
-
   enable_ipv6 = true
   assign_ipv6_address_on_creation = true
 
