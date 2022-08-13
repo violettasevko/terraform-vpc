@@ -25,7 +25,7 @@ module "vpc" {
 
   azs             = ["${var.AWS_Region}a", "${var.AWS_Region}b", "${var.AWS_Region}c"]
    public_subnets  = ["${var.vpc_prefix}.11.0/24", "${var.vpc_prefix}.12.0/24", "${var.vpc_prefix}.13.0/24"]
-   private_subnets = ["${var.vpc_prefix}.31.0/24", "${var.vpc_prefix}.32.0/24", "${var.vpc_prefix}.33.0/24"]
+   intra_subnets = ["${var.vpc_prefix}.31.0/24", "${var.vpc_prefix}.32.0/24", "${var.vpc_prefix}.33.0/24"]
   
   enable_nat_gateway = false
   
@@ -35,7 +35,7 @@ module "vpc" {
   assign_ipv6_address_on_creation = true
 
   public_subnet_ipv6_prefixes = [17, 18, 19]
-  private_subnet_ipv6_prefixes = [51, 52, 53]
+  intra_subnet_ipv6_prefixes = [51, 52, 53]
 
 public_subnet_tags = {
   Name = "Vpc3 public subnet A"
@@ -43,7 +43,7 @@ public_subnet_tags = {
   Name = "Vpc3 public subnet C"
 }
 
-private_subnet_tags = {
+intra_subnet_tags = {
   Name = "Vpc3 intra subnet A"
   Name = "Vpc3 intra subnet B"
   Name = "Vpc3 intra subnet C"
