@@ -32,6 +32,14 @@ module "vpc" {
   
   default_route_table_name = "igw5"
 
+  private_route_table_tags = {
+    Name = "Vpc5-private"
+  }
+
+  public_route_table_tags = {
+    Name = "Vpc5-Public"
+  }
+
   enable_ipv6 = true
   assign_ipv6_address_on_creation = true
 
