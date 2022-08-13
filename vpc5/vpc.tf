@@ -5,9 +5,9 @@ variable "AWS_Region" {
 }
 
 variable "vpc_prefix" {
-  description = "type a cidr (default - 10.74)"
+  description = "type a cidr (default - 10.75)"
   type    = string
-  default = "10.74"
+  default = "10.75"
 }
 
 #sample
@@ -20,7 +20,7 @@ provider "aws" {
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
-  name = "Vpc4"
+  name = "Vpc5"
   cidr = "${var.vpc_prefix}.0.0/16"
 
   azs             = ["${var.AWS_Region}a", "${var.AWS_Region}b", "${var.AWS_Region}c"]
@@ -30,7 +30,7 @@ module "vpc" {
   
   enable_nat_gateway = false
   
-  default_route_table_name = "igw4"
+  default_route_table_name = "igw5"
 
   enable_ipv6 = true
   assign_ipv6_address_on_creation = true
