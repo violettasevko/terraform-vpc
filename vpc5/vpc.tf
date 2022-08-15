@@ -46,19 +46,15 @@ module "vpc" {
   intra_subnet_ipv6_prefixes = [49, 50, 51]
 
 public_subnet_tags = {
-  Name = "Vpc5 Public subnet ${azs}"
+  Name = "Vpc5 Public subnet}"
 }
 
 private_subnet_tags = {
-  Name = "Vpc5 private subnet A"
-  Name = "Vpc5 private subnet B"
-  Name = "Vpc5 private subnet C"
+  Name = "Vpc5 private subnet"
 }
 
 intra_subnet_tags = {
-  Name = "Vpc5 intra subnet A"
-  Name = "Vpc5 intra subnet B"
-  Name = "Vpc5 intra subnet C"
+  Name = "Vpc5 intra subnet"
 }
 
   tags = {
