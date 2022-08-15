@@ -33,7 +33,7 @@ module "vpc" {
   assign_ipv6_address_on_creation = true
 
   private_subnet_ipv6_prefixes = [33, 34, 35]
-  intra_subnet_ipv6_prefixes = [51, 52, 53]
+  intra_subnet_ipv6_prefixes = [49, 50, 51]
 
 private_subnet_tags = {
   Name = "Vpc7 private subnet A"
