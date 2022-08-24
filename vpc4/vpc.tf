@@ -5,9 +5,9 @@ variable "AWS_Region" {
 }
 
 variable "vpc_prefix" {
-  description = "type a cidr (default - 10.74)"
+  description = "type a cidr (default - 10.50)"
   type    = string
-  default = "10.74"
+  default = "10.50"
 }
 
 #sample
