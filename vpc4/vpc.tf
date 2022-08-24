@@ -1,7 +1,7 @@
 variable "AWS_Region" {
-  description = "type a region (default - eu-central-1)"
+  description = "type a region (default - us-east-1)"
   type    = string
-  default = "eu-central-1"
+  default = "us-east-1"
 }
 
 variable "vpc_prefix" {
@@ -32,6 +32,14 @@ module "vpc" {
   single_nat_gateway = true
   one_nat_gateway_per_az = false
 
+  private_route_table_tags = {
+    Name = "Vpc4-private"
+  }
+
+  public_route_table_tags = {
+    Name = "Vpc4-Public"
+  }
+  
   enable_ipv6 = true
   assign_ipv6_address_on_creation = true
 
@@ -40,24 +48,14 @@ module "vpc" {
   intra_subnet_ipv6_prefixes = [49, 50, 51]
 
 public_subnet_tags = {
-  Name = "Vpc4 public subnet A"
-  Name = "Vpc4 public subnet B"
-  Name = "Vpc4 public subnet C"
+  Name = "Vpc4 Public subnet"
 }
 
 private_subnet_tags = {
-  Name = "Vpc4 private subnet A"
-  Name = "Vpc4 private subnet B"
-  Name = "Vpc4 private subnet C"
+  Name = "Vpc4 private subnet"
 }
 
 intra_subnet_tags = {
-  Name = "Vpc4 intra subnet A"
-  Name = "Vpc4 intra subnet B"
-  Name = "Vpc4 intra subnet C"
+  Name = "Vpc4 intra subnet"
 }
-
-  tags = {
-    owner = "violetta"
-  }
 }
