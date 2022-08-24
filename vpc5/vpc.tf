@@ -1,7 +1,7 @@
 variable "AWS_Region" {
-  description = "type a region (default - eu-central-1)"
+  description = "type a region (default - us-east-2)"
   type    = string
-  default = "eu-central-1"
+  default = "us-east-2"
 }
 
 variable "vpc_prefix" {
@@ -56,8 +56,4 @@ private_subnet_tags = {
 intra_subnet_tags = {
   Name = "Vpc5 intra subnet"
 }
-
-  tags = {
-    owner = "violetta"
-  }
 }
