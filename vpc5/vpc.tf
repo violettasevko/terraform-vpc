@@ -1,7 +1,7 @@
 variable "AWS_Region" {
-  description = "type a region (default - us-east-2)"
+  description = "type a region (default - eu-central-1)"
   type    = string
-  default = "us-east-2"
+  default = "eu-central-1"
 }
 
 variable "vpc_prefix" {
