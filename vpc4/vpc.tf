@@ -64,7 +64,7 @@ module "tgw" {
   source  = "terraform-aws-modules/transit-gateway/aws"
   version = "~> 2.0"
 
-  name        = "my-tgw"
+  name        = "global-tgw-virginia"
   description = "My TGW shared with several other AWS accounts"
 
   enable_auto_accept_shared_attachments = true
@@ -76,24 +76,8 @@ module "tgw" {
       dns_support  = true
       ipv6_support = true
 
-      tgw_routes = [
-        {
-          destination_cidr_block = "10.0.0.0/8"
-        },
-        {
-          destination_cidr_block = "172.31.0.0/16"
-        },
-        {
-          destination_cidr_block = "2a05:d014:f5b:7a15::/64"
-        }
-      ]
-    }
-  }
+      transit_gateway_cidr_blocks = ["10.0.0.0/8", "172.31.0.0/16", "2a05:d014:f5b:7a15::/64"]
 
   ram_allow_external_principals = true  #auto accept shared attachments
   ram_principals = ["935319783299"]
-
-  tags = {
-    Purpose = "try-example"
-  }
 }
