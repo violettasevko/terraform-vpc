@@ -91,7 +91,7 @@ module "tgw" {
   }
 
   ram_allow_external_principals = true  #auto accept shared attachments
-  ram_principals = ["o-2xyjkzd15j"]
+  ram_principals = ["935319783299"]
 
   tags = {
     Purpose = "try-example"
