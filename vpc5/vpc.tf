@@ -1,13 +1,13 @@
 variable "AWS_Region" {
-  description = "type a region (default - eu-central-1)"
+  description = "type a region (default - us-east-2)"
   type    = string
-  default = "eu-central-1"
+  default = "us-east-2"
 }
 
 variable "vpc_prefix" {
-  description = "type a cidr (default - 10.75)"
+  description = "type a cidr (default - 10.73)"
   type    = string
-  default = "10.75"
+  default = "10.73"
 }
 
 #sample
