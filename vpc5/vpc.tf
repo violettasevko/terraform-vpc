@@ -59,5 +59,5 @@ intra_subnet_tags = {
 }
   
 resource "aws_egress_only_internet_gateway" "egw" {
-  vpc_id = vpc.this.id
+  vpc_id = this.vpc.id
 }
