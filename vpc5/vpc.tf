@@ -58,6 +58,6 @@ intra_subnet_tags = {
 }
 }
   
-resourse "aws_egress_only_internet_gateway.this" {
+resource "aws_egress_only_internet_gateway.this" {
   vpc_id = vpc.id
 }
