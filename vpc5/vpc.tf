@@ -57,6 +57,7 @@ intra_subnet_tags = {
   Name = "Vpc5 intra subnet"
 }
 }
+  
 resourse "aws_egress_only_internet_gateway.this" {
   vpc_id = vpc.id
 }
