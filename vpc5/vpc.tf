@@ -58,6 +58,3 @@ intra_subnet_tags = {
   Name = "Vpc5 intra subnet"
 }
 }
-resource "aws_egress_only_internet_gateway" "example" {
-  vpc_id = vpc.id
-}
