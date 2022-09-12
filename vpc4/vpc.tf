@@ -79,5 +79,4 @@ intra_subnet_tags = {
 #       transit_gateway_cidr_blocks = ["10.0.0.0/8", "172.31.0.0/16", "2a05:d014:f5b:7a15::/64"]
 
 #   ram_allow_external_principals = true  #auto accept shared attachments
-#   ram_principals = ["935319783299"]
 #}
