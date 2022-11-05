@@ -32,14 +32,10 @@ module "vpc" {
   single_nat_gateway = true
   one_nat_gateway_per_az = false
 
-  private_route_table_tags = {
-    Name = "Vpc4-private"
-  }
+  public_subnet_suffix  = "public"
+  private_subnet_suffix = "private-app"
+  intra_subnet_suffix   = "intra-db" 
 
-  public_route_table_tags = {
-    Name = "Vpc4-Public"
-  }
-  
   enable_ipv6 = true
   assign_ipv6_address_on_creation = true
 
@@ -47,36 +43,4 @@ module "vpc" {
   private_subnet_ipv6_prefixes = [33, 34, 35]
   intra_subnet_ipv6_prefixes = [49, 50, 51]
 
-public_subnet_tags = {
-  Name = "Vpc4 Public subnet"
 }
-
-private_subnet_tags = {
-  Name = "Vpc4 private subnet"
-}
-
-intra_subnet_tags = {
-  Name = "Vpc4 intra subnet"
-}
-}
-
-# module "tgw" {
-#   source  = "terraform-aws-modules/transit-gateway/aws"
-#   version = "~> 2.0"
-# 
-#   name        = "global-tgw-virginia"
-#   description = "My TGW shared with several other AWS accounts"
-# 
-#   enable_auto_accept_shared_attachments = true
-# 
-#   vpc_attachments = {
-#     vpc = {
-#       vpc_id       = module.vpc.vpc_id
-#       subnet_ids   = module.vpc.private_subnets
-#     dns_support  = true
-#       ipv6_support = true
-# 
-#       transit_gateway_cidr_blocks = ["10.0.0.0/8", "172.31.0.0/16", "2a05:d014:f5b:7a15::/64"]
-
-#   ram_allow_external_principals = true  #auto accept shared attachments
-#}
