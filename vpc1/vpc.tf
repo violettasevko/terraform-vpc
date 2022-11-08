@@ -11,7 +11,7 @@ variable "vpc_prefix" {
 }
 
 #sample
-#terraform apply -var="AWS_Region=eu-central-1" -var="vpc_prefix=10.61"
+#terraform apply -var="AWS_Region=eu-central-1" -var="vpc_prefix=10.20"
 
 provider "aws" {
     region = var.AWS_Region
